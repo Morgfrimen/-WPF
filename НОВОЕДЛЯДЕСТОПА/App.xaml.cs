@@ -13,5 +13,6 @@ namespace НОВОЕДЛЯДЕСТОПА
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

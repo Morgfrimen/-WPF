@@ -5,71 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:НОВОЕДЛЯДЕСТОПА"
         mc:Ignorable="d"
-        Title="Наиболее красивая программа" Height="500" Width="800" FontSize="14" FontFamily="Segoe Script" Left="{DynamicResource {x:Static SystemParameters.IconWidthKey}}" OpacityMask="#FFF5E2E2" TextOptions.TextHintingMode="Animated" TextOptions.TextFormattingMode="Display" Top="{DynamicResource {x:Static SystemParameters.FixedFrameHorizontalBorderHeightKey}}" UseLayoutRounding="True" Visibility="Visible" WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Cursor="Pen">
-        <Grid.OpacityMask>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="White" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.OpacityMask>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="#FFE60000" Offset="0.476"/>
-                <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="1"/>
-                <GradientStop Color="#FFC2C2C2" Offset="0.004"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*"/>
-            <ColumnDefinition Width="596*"/>
-            <ColumnDefinition Width="137*"/>
-
-        </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="1" 
-                  Margin="142,0,0,188"
-                  HorizontalAlignment="Left"
-                  Width="431" Height="260" 
-                  VerticalAlignment="Bottom" 
-                  Header="Здесь группа элементов">
-            <TextBox Margin="0,28,89,0" 
-                     RenderTransformOrigin="0.5,0.5"
-                     Text="Введите свой кривой логин"
-                     FontSize="14"
-                     FontFamily="Times new romans"
-                     FontStyle="Italic"
-                     ForceCursor="False" Cursor="ScrollSE" SelectionOpacity="{DynamicResource {x:Static SystemParameters.KanjiWindowHeightKey}}" Background="#FFF5ECEC" BorderBrush="#FF0F45E8" Foreground="#FF660FFF" SelectionBrush="#FFA6006A" CaretBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" TextDecorations="Underline" TextOptions.TextHintingMode="Animated" AutomationProperties.Name="555" HorizontalAlignment="Right" Width="257" Height="27" VerticalAlignment="Top" AllowDrop="False" TextChanged="TextBox_TextChanged" KeyDown="TextBox_KeyDown"
-                     >
-                <TextBox.OpacityMask>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFB61A1A" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBox.OpacityMask>
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-8.666"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-
-            </TextBox>
-
-        </GroupBox>
-        <Button  TextElement.FontSize="14"
-                 Margin="7,0,10,10"
-                TextElement.FontFamily="Times new romans"
-                Content="Выход"
-                Click="Button_Click"
-                Grid.Column="2" Height="95" VerticalAlignment="Bottom"/>
-        <Button  TextElement.FontSize="14"
-            Margin="10,0,0,10"
-            TextElement.FontFamily="Times new romans"
-            Content="Вход"
-            Click="Login_Click" Grid.ColumnSpan="2" Height="95" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
-
+        Title="Наиболее красивая программа" Height="500" Width="800" FontSize="14" FontFamily="Segoe Script" Left="{DynamicResource {x:Static SystemParameters.IconWidthKey}}" OpacityMask="#FFF5E2E2" TextOptions.TextHintingMode="Animated" TextOptions.TextFormattingMode="Display" Top="{DynamicResource {x:Static SystemParameters.FixedFrameHorizontalBorderHeightKey}}" UseLayoutRounding="True" Visibility="Visible" WindowStyle="None" WindowStartupLocation="CenterScreen" HorizontalAlignment="Right">
+    <Window.Resources>
+        <Storyboard x:Key="Storyboard1">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)" Storyboard.TargetName="selectiveScrollingGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0.025"/>
+            <GradientStop Color="#FF441313" Offset="0.711"/>
+            <GradientStop Color="#FF605B5B" Offset="0.2"/>
+            <GradientStop Color="Black" Offset="0.959"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,0,2,5" ClipToBounds="True" SnapsToDevicePixels="True">
+        <Grid Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Visibility="Hidden">
+            <Grid.Effect>
+                <BlurEffect KernelType="Box" RenderingBias="Quality"/>
+            </Grid.Effect>
+        </Grid>
+        <SelectiveScrollingGrid x:Name="selectiveScrollingGrid" HorizontalAlignment="Left" Height="90" Margin="171,169,0,0" VerticalAlignment="Top" Width="459" Cursor="Pen">
+            <SelectiveScrollingGrid.Effect>
+                <BlurEffect/>
+            </SelectiveScrollingGrid.Effect>
+            <SelectiveScrollingGrid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </SelectiveScrollingGrid.ColumnDefinitions>
+            <PasswordBox Margin="2,48,0,10" UseLayoutRounding="True" ForceCursor="True" SelectionOpacity="5" ScrollViewer.CanContentScroll="True" Grid.Column="1"/>
+            <TextBox Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Margin="2,0,4,0"/>
+            <Label Content="Введите логин" HorizontalAlignment="Right" Height="26" VerticalAlignment="Top" Width="130"/>
+            <Label Content="Введите пароль" Height="32" Margin="0,48,1,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="129"/>
+        </SelectiveScrollingGrid>
     </Grid>
 </Window>
