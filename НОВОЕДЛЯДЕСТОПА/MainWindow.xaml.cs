@@ -28,23 +28,16 @@ namespace НОВОЕДЛЯДЕСТОПА
         {
             InitializeComponent();
         }
-
+        void Messages()
+        {
+            label.Content = "удалось";
+        }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (Login.Text=="admin" && Password.Password=="admin")
+            if (Login.Text=="1" && Password.Password=="1")
             {
-                label.Content = (string.Format("Здравствуйте {0} !\nЗапускаем главный экран...",Login.Text));
-                windows.Width = 650;
-                windows.Height = 650;
-                Thread.Sleep(500);
-                windows.Width = 850;
-                windows.Height = 850;
-                windows.WindowStartupLocation = WindowStartupLocation.Manual;
-                ЛогинПароль.Visibility = Visibility.Hidden;
-                button.Visibility = Visibility.Hidden;
-                Закрытие.Visibility = Visibility.Visible;
-               // Thread.Sleep(500);
-
+                label.Content = string.Format("Здраствуйсте, {0}!",Login.Text);
+                label.DataContext = "Внесено изменение";
             }
             else
             {
@@ -55,9 +48,25 @@ namespace НОВОЕДЛЯДЕСТОПА
             }
         }
 
+
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void label_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ЛогинПароль.Visibility = Visibility.Collapsed;
+            button.Visibility = Visibility.Collapsed;
+            label.HorizontalAlignment = HorizontalAlignment.Center;
+            for(int i = 0; i <= 100; i += 15)
+            {
+                Thread.Sleep(25);
+                windows.Height += i;
+                windows.Width += i;
+            }
+            Закрытие.Visibility = Visibility.Visible;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:НОВОЕДЛЯДЕСТОПА"
         mc:Ignorable="d"
-        Title="Наиболее красивая программа" Height="500" Width="800" FontSize="14" FontFamily="Segoe Script" Left="{DynamicResource {x:Static SystemParameters.IconWidthKey}}" OpacityMask="#FFF5E2E2" TextOptions.TextHintingMode="Animated" TextOptions.TextFormattingMode="Display" Top="{DynamicResource {x:Static SystemParameters.FixedFrameHorizontalBorderHeightKey}}" UseLayoutRounding="True" Visibility="Visible" WindowStartupLocation="Manual" HorizontalAlignment="Right" WindowStyle="ToolWindow">
+        Title="Наиболее красивая программа" Height="500" Width="800" FontSize="14" FontFamily="Segoe Script" Left="{DynamicResource {x:Static SystemParameters.IconWidthKey}}" OpacityMask="#FFF5E2E2" TextOptions.TextHintingMode="Animated" TextOptions.TextFormattingMode="Display" Top="{DynamicResource {x:Static SystemParameters.FixedFrameHorizontalBorderHeightKey}}" UseLayoutRounding="True" Visibility="Visible" WindowStartupLocation="Manual" HorizontalAlignment="Right" WindowStyle="ToolWindow" BorderBrush="Black">
     <Window.Resources>
         <Storyboard x:Key="Storyboard1">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)" Storyboard.TargetName="ЛогинПароль">
@@ -44,26 +44,95 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ПлавноезакрытиеLabel">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)" Storyboard.TargetName="label">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="10"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="label">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Изменениецветафона">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="windows">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFCB9D9D"/>
+                <EasingColorKeyFrame KeyTime="0:0:3" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" Storyboard.TargetName="windows">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.056">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Offset)" Storyboard.TargetName="windows">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.976">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="windows">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFFDFBFB">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+                <EasingColorKeyFrame KeyTime="0:0:3" Value="#FF636060">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="windows">
+                <EasingColorKeyFrame KeyTime="0" Value="#FFF57070">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+                <EasingColorKeyFrame KeyTime="0:0:3" Value="#FF636060">
+                    <EasingColorKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseInOut"/>
+                    </EasingColorKeyFrame.EasingFunction>
+                </EasingColorKeyFrame>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="button">
-            <BeginStoryboard Storyboard="{StaticResource Увеличениеокна}"/>
-            <StopStoryboard BeginStoryboardName="Storyboard2_BeginStoryboard"/>
-        </EventTrigger>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
-            <BeginStoryboard x:Name="Storyboard2_BeginStoryboard" Storyboard="{StaticResource Storyboard2}"/>
-        </EventTrigger>
-    </Window.Triggers>
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="0.025"/>
-            <GradientStop Color="#FFC9C341" Offset="0.693"/>
-            <GradientStop Color="#FF802828" Offset="0.225"/>
-            <GradientStop Color="#FF34CB79" Offset="0.959"/>
-            <GradientStop Color="#FFE63805" Offset="0.396"/>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFEE8989" Offset="0.088"/>
+            <GradientStop Color="#FFF7E5E5" Offset="0.92"/>
         </LinearGradientBrush>
     </Window.Background>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="Storyboard1_BeginStoryboard" Storyboard="{StaticResource Storyboard1}"/>
+            <BeginStoryboard x:Name="Storyboard2_BeginStoryboard" Storyboard="{StaticResource Storyboard2}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.SizeChanged">
+            <BeginStoryboard x:Name="ПлавноезакрытиеLabel_BeginStoryboard" Storyboard="{StaticResource ПлавноезакрытиеLabel}"/>
+            <StopStoryboard BeginStoryboardName="Storyboard1_BeginStoryboard"/>
+            <StopStoryboard BeginStoryboardName="Storyboard2_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="button">
+            <BeginStoryboard x:Name="Изменениецветафона_BeginStoryboard" Storyboard="{StaticResource Изменениецветафона}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid x:Name="Основа" Margin="0,0,2,5" ClipToBounds="True" SnapsToDevicePixels="True" UseLayoutRounding="False">
         <Grid Grid.Row="2" Grid.Column="3" Grid.RowSpan="3" Grid.ColumnSpan="2" Visibility="Hidden">
             <Grid.Effect>
@@ -93,7 +162,11 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Label x:Name="label" Content="Обработка данных, ждите" HorizontalAlignment="Left" Height="100" Margin="278,332,0,0" VerticalAlignment="Top" Width="500" BorderBrush="Black" Visibility="Collapsed" Background="{x:Null}"/>
+        <Label x:Name="label" HorizontalAlignment="Left" Height="100" Margin="278,332,0,0" VerticalAlignment="Top" Width="500" BorderBrush="Black" Visibility="Collapsed" Background="{x:Null}" DataContextChanged="label_DataContextChanged" FontFamily="Times New Roman" FontSize="24">
+            <Label.Effect>
+                <BlurEffect/>
+            </Label.Effect>
+        </Label>
         <Button x:Name="Закрытие" Content="Выход" Margin="0,0,5,14" Click="Button_Click_1" HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Bottom" Visibility="Hidden"/>
     </Grid>
 </Window>
